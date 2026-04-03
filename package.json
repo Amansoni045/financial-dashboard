@@ -1,0 +1,22 @@
+{
+  "name": "finance-dashboard-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^7.6.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.0",
+    "express": "^5.2.1",
+    "prisma": "^7.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
