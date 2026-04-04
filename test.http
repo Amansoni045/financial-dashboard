@@ -1,0 +1,127 @@
+@baseUrl = http://localhost:5000/api
+
+### Users API
+
+# 1. Get All Users (Admin)
+GET {{baseUrl}}/users
+Content-Type: application/json
+
+###
+
+# 2. Create User (Admin)
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+  "name": "Jane Analyst",
+  "email": "jane@example.com",
+  "password": "securepassword",
+  "role": "ANALYST"
+}
+
+###
+
+# 3. Update User (Admin)
+# Replace id with a valid user ID from the response above
+PATCH {{baseUrl}}/users/test-user-id
+Content-Type: application/json
+
+{
+  "name": "Updated Admin Name"
+}
+
+###
+
+# 4. Delete User (Admin)
+# Replace id with a valid user ID from the response above
+DELETE {{baseUrl}}/users/some-user-id
+Content-Type: application/json
+
+
+---
+
+### Records API
+
+# 1. Create a Financial Record (Admin only)
+POST {{baseUrl}}/records
+Content-Type: application/json
+
+{
+  "amount": 1500.50,
+  "type": "INCOME",
+  "category": "Salary",
+  "date": "2026-04-03T10:00:00Z",
+  "notes": "Monthly salary credited"
+}
+
+###
+
+# 2. Create an Expense Record
+POST {{baseUrl}}/records
+Content-Type: application/json
+
+{
+  "amount": 200,
+  "type": "EXPENSE",
+  "category": "Software",
+  "date": "2026-04-04T12:00:00Z",
+  "notes": "Monthly software subscriptions"
+}
+
+###
+
+# 3. Get All Records (Admin, Analyst)
+GET {{baseUrl}}/records
+Content-Type: application/json
+
+###
+
+# 4. Filter Records by Category
+GET {{baseUrl}}/records?category=Salary
+Content-Type: application/json
+
+###
+
+# 5. Get Record By ID
+# Replace id with a valid record ID
+GET {{baseUrl}}/records/some-record-id
+Content-Type: application/json
+
+###
+
+# 6. Update Record (Admin)
+# Replace id with a valid record ID
+PUT {{baseUrl}}/records/some-record-id
+Content-Type: application/json
+
+{
+  "amount": 250
+}
+
+###
+
+# 7. Delete Record (Admin)
+# Replace id with a valid record ID
+DELETE {{baseUrl}}/records/some-record-id
+Content-Type: application/json
+
+
+---
+
+### Dashboard Analytics API
+
+# 1. Get Overall Summary (Total Income, Expenses, Net Balance)
+GET {{baseUrl}}/dashboard/summary
+Content-Type: application/json
+
+###
+
+# 2. Get Income & Expense split grouped by Category
+GET {{baseUrl}}/dashboard/categories
+Content-Type: application/json
+
+###
+
+# 3. Get standard list of top 10 most recent transactions
+GET {{baseUrl}}/dashboard/recent
+Content-Type: application/json
