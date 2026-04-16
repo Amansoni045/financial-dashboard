@@ -1,0 +1,12 @@
+{"timestamp":"00:00:02.002","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:02.002","source":"Server","level":"LOG","message":"  We detected TypeScript in your project and reconfigured your tsconfig.json file for you."}
+{"timestamp":"00:00:02.002","source":"Server","level":"LOG","message":"  The following suggested values were added to your tsconfig.json. These values can be changed to fit your project's needs:\n"}
+{"timestamp":"00:00:02.002","source":"Server","level":"LOG","message":"  \t- lib was set to dom,dom.iterable,esnext"}
+{"timestamp":"00:00:02.002","source":"Server","level":"LOG","message":"  \t- include was set to ['next-env.d.ts', '.next/types/**/*.ts', '.next/dev/types/**/*.ts', '**/*.mts', '**/*.ts', '**/*.tsx']"}
+{"timestamp":"00:00:02.002","source":"Server","level":"LOG","message":"  \t- plugins was updated to add { name: 'next' }"}
+{"timestamp":"00:00:02.002","source":"Server","level":"LOG","message":"  \t- exclude was set to ['node_modules']"}
+{"timestamp":"00:00:02.002","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:02.002","source":"Server","level":"LOG","message":"  The following mandatory changes were made to your tsconfig.json:\n"}
+{"timestamp":"00:00:02.003","source":"Server","level":"LOG","message":"  \t- resolveJsonModule was set to true (to match webpack resolution)"}
+{"timestamp":"00:00:02.003","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:02.068","source":"Server","level":"LOG","message":""}

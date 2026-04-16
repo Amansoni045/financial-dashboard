@@ -1,0 +1,14 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/api/auth/login/route": "/api/auth/login",
+  "/api/dashboard/categories/route": "/api/dashboard/categories",
+  "/api/dashboard/recent/route": "/api/dashboard/recent",
+  "/api/dashboard/summary/route": "/api/dashboard/summary",
+  "/api/dashboard/trends/route": "/api/dashboard/trends",
+  "/api/records/[id]/route": "/api/records/[id]",
+  "/api/records/route": "/api/records",
+  "/api/users/[id]/route": "/api/users/[id]",
+  "/api/users/route": "/api/users",
+  "/page": "/"
+}

@@ -1,26 +1,27 @@
-# Finance Dashboard Backend
+# Finance Dashboard (Next.js Unified)
 
-A robust, production-ready backend for a financial dashboard application. Built with Express, Prisma, and PostgreSQL, this system provides APIs for user and financial record management, role-based access control, and dashboard analytics.
+A robust, production-ready full-stack financial dashboard application. Now unified into a single **Next.js** project for streamlined development and hosting. Built with Next.js (App Router), Prisma, PostgreSQL, and Recharts.
 
 ## Features
 
+- **Unified Architecture:** Frontend and Backend hosted together in one Next.js application.
+- **Single Command Startup:** Use `npm run dev` to start both the dashboard UI and the API routes.
 - **Role-Based Access Control (RBAC):** Roles include `ADMIN` (full access), `ANALYST` (view records and analytics), and `VIEWER` (view analytics only).
-- **JWT Authentication:** Secure stateless authentication with bcrypt password hashing.
-- **Robust Validation:** Data validation using `zod` for all incoming requests with clear, structured error messages.
+- **JWT Authentication:** Secure stateless authentication with bcrypt password hashing, migrated to Next.js API Routes.
+- **Dashboard Analytics:** Interactive visualizations for monthly trends, category breakdowns, and overall summaries using Recharts.
 - **Soft Delete:** Financial records are soft-deleted to maintain data integrity and accurate historical reporting.
-- **Pagination:** Record listing is paginated (with `page` and `limit` controls).
-- **Dashboard Analytics:** Aggregation endpoints for monthly trends, category breakdowns, and overall summaries.
-- **Error Handling:** Centralized Express error-handling middleware catches validation and Prisma errors appropriately.
+- **TypeScript Migration:** The codebase has been migrated to TypeScript for better type safety and developer experience.
 
 ---
 
 ## Tech Stack
 
-- **Node.js** & **Express**
-- **Prisma** (ORM with `adapter-pg`)
-- **PostgreSQL** (Neon DB)
-- **Zod** (Validation)
-- **JSON Web Token (JWT)** & **bcryptjs** (Auth)
+- **Framework:** Next.js 15+ (App Router)
+- **Language:** TypeScript
+- **Database:** Prisma (ORM) with PostgreSQL (Neon DB)
+- **Styling:** Tailwind CSS 4
+- **Charts:** Recharts
+- **Authentication:** Custom JWT with `jsonwebtoken` and `bcryptjs`
 
 ---
 
@@ -46,7 +47,6 @@ Apply the migrations to sync the database schema:
 ```bash
 npm run migrate
 ```
-*(Run `npx prisma generate` if using a different environment to generate the strict TypeScript client bindings).*
 
 ### 5. Seed the Database
 Populate the database with initial users and realistic financial records:
@@ -55,46 +55,39 @@ npm run seed
 ```
 
 **Seed Credentials:**
-- Admin: `admin@finance.dev` / `Admin@1234`
-- Analyst: `analyst@finance.dev` / `Analyst@1234`
-- Viewer: `viewer@finance.dev` / `Viewer@1234`
+- **Admin:** `admin@finance.dev` / `Admin@1234`
+- **Analyst:** `analyst@finance.dev` / `Analyst@1234`
+- **Viewer:** `viewer@finance.dev` / `Viewer@1234`
 
-### 6. Run the Server
-Start the development server (runs on `http://localhost:5001` via nodemon by default):
+### 6. Run the Application
+Start the development server (runs on `http://localhost:3000` by default):
 ```bash
 npm run dev
 ```
 
 ---
 
-## API Documentation
+## API Documentation (Next.js API Routes)
 
-### **Auth & Health**
+All API endpoints are now prefix with `/api`:
+
+### **Auth**
 - `POST /api/auth/login` — Login to receive a JWT. Body: `{ email, password }`
-- `GET /health` — Check system health.
 
-### **Dashboard (Accessible by Admin, Analyst, Viewer)**
+### **Dashboard**
 - `GET /api/dashboard/summary` — Returns total income, total expenses, net balance, and record count.
 - `GET /api/dashboard/categories` — Income and expense split grouped by category.
-- `GET /api/dashboard/trends` — Returns month-by-month income/expense/net historical data for the last 12 months.
-- `GET /api/dashboard/recent` — Lists the 10 most recent financial transactions (with nested user details).
+- `GET /api/dashboard/trends` — Returns month-by-month income/expense/net historical data (12 months).
+- `GET /api/dashboard/recent` — Lists the 10 most recent financial transactions.
 
 ### **Financial Records**
-- `GET /api/records` *(Admin, Analyst, Viewer)* — Returns all records (excludes soft-deleted). Supports `?page=1&limit=20` and filters (`type`, `category`, `startDate`, `endDate`).
-- `GET /api/records/:id` *(Admin, Analyst, Viewer)* — Retrieve a specific record.
+- `GET /api/records` — Returns all records. Supports pagination and filters.
 - `POST /api/records` *(Admin)* — Create a new financial record.
 - `PUT /api/records/:id` *(Admin)* — Update an existing record.
 - `DELETE /api/records/:id` *(Admin)* — Soft-delete a record.
 
 ### **Users (Admin Only)**
-- `GET /api/users` — List all registered users in the system.
-- `POST /api/users` — Create a new user (Viewer, Analyst, or Admin).
-- `PATCH /api/users/:id` — Update an existing user's name, role, or status.
-- `DELETE /api/users/:id` — Permanently delete a user.
-
----
-
-## Assumptions & Trade-offs Made
-1. **Soft Delete over Hard Delete:** For financial systems, hard deleting records causes historical summaries to break. `deletedAt` was added to ensure analytics accurately reflect the ledger context while hiding the data from the UI.
-2. **Simplified Refresh Tokens:** Only access tokens (`JWT`) are used. To make it more production-ready, a refresh token (HttpOnly cookie) structure would be favorable.
-3. **Roles and Permissions Structure:** Hardcoded as enums (`ADMIN`, `ANALYST`, `VIEWER`) via middleware for simplicity instead of maintaining a discrete hierarchical permissions table mapped to each route.
+- `GET /api/users` — List all registered users.
+- `POST /api/users` — Create a new user.
+- `PATCH /api/users/:id` — Update a user.
+- `DELETE /api/users/:id` — Delete a user.

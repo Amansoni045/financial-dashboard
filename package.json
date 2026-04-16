@@ -4,27 +4,52 @@
   "description": "Finance dashboard backend API with role-based access control, JWT authentication, and analytics endpoints.",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
+    "dev": "next dev",
+    "build": "prisma generate && next build",
+    "start": "next start",
     "seed": "node src/seed.js",
-    "migrate": "npx prisma migrate deploy"
+    "migrate": "npx prisma migrate dev",
+    "postinstall": "prisma generate"
   },
-  "keywords": ["finance", "dashboard", "api", "express", "prisma"],
+  "keywords": [
+    "finance",
+    "dashboard",
+    "api",
+    "express",
+    "prisma"
+  ],
   "author": "Aman Soni",
   "license": "ISC",
   "dependencies": {
     "@prisma/adapter-pg": "^7.6.0",
     "@prisma/client": "^7.6.0",
+    "@tailwindcss/postcss": "^4.2.2",
+    "autoprefixer": "^10.5.0",
     "bcryptjs": "^3.0.2",
+    "clsx": "^2.1.1",
     "cors": "^2.8.6",
     "dotenv": "^17.4.0",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.2",
+    "lucide-react": "^1.8.0",
+    "next": "^16.2.4",
     "pg": "^8.20.0",
+    "postcss": "^8.5.10",
     "prisma": "^7.6.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "recharts": "^3.8.1",
+    "tailwind-merge": "^3.5.0",
+    "tailwindcss": "^4.2.2",
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14"
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^25.6.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "nodemon": "^3.1.14",
+    "typescript": "^6.0.2"
   }
 }
